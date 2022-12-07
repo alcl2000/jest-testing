@@ -28,27 +28,27 @@ h2 {
 .circle1 {
     height: 500px;
     width: 500px;
-    background-color: #009FE3;
+    background-color: #f88b8b;
 }
 
 .circle2 {
     height: 400px;
     width: 400px;
-    background-color: #445261;
+    background-color: #fdde88;
     top: 50px;
     left: 50px;
 }
 .circle3 {
     height: 300px;
     width: 300px;
-    background-color: #EFB920;
+    background-color: #8aee97;
     top: 100px;
     left: 100px;
 }
 .circle4 {
     height: 200px;
     width: 200px;
-    background-color: #23BBBB;
+    background-color: #009FE3;
     top: 150px;
     left: 150px;
 }
