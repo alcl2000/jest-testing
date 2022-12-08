@@ -1,6 +1,7 @@
 /**
  * @jest-environment jsdom
  */
+const { test } = require('picomatch');
 const {game, newGame} = require('../script')
 
 beforeAll(() => {
@@ -33,8 +34,18 @@ describe('newGame function works correctly', () =>{
     beforeAll(() =>{
         game.score = 20;
         newGame();
+        document.getElementById('score').innerText = '20';
     });
     test('newGame should set score to 0', () =>{
         expect(game.score).toEqual(0);
+    });
+    test('newGame should clear the playerMoves array', () =>{
+        expect(game.playerMoves.length).toEqual(0);
+    });
+    test('newGame should clear the computerSequence array',() =>{
+        expect(game.currentGame.length).toEqual(0);
+    });
+    test('newGame should display score = 0 ', () =>{
+        expect(document.getElementById('score').innerText).toEqual(0);
     });
 });
