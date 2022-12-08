@@ -1,7 +1,7 @@
 /**
  * @jest-environment jsdom
  */
-const {game} = require('../script')
+const {game, newGame} = require('../script')
 
 beforeAll(() => {
     let fs = require("fs");
@@ -26,5 +26,15 @@ describe("game object contains correct keys", () => {
     });
     test('Choices contains the correct ids', () =>{
         expect(game.choices).toEqual(['button1','button2', 'button3','button4']);
-    })
+    });
+});
+
+describe('newGame function works correctly', () =>{
+    beforeAll(() =>{
+        game.score = 20;
+        newGame();
+    });
+    test('newGame should set score to 0', () =>{
+        expect(game.score).toEqual(0);
+    });
 });
