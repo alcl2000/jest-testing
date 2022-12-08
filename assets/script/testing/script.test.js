@@ -1,8 +1,9 @@
 /**
  * @jest-environment jsdom
  */
-const { test } = require('picomatch');
-const {game, newGame} = require('../script')
+
+
+const {game, newGame, showScore, addTurn, lightsOn} = require('../script')
 
 beforeAll(() => {
     let fs = require("fs");
@@ -34,7 +35,7 @@ describe('newGame function works correctly', () =>{
     beforeAll(() =>{
         game.score = 20;
         newGame();
-        document.getElementById('score').innerText = '20';
+        document.getElementById('score').innerText = game.score;
     });
     test('newGame should set score to 0', () =>{
         expect(game.score).toEqual(0);
@@ -42,10 +43,32 @@ describe('newGame function works correctly', () =>{
     test('newGame should clear the playerMoves array', () =>{
         expect(game.playerMoves.length).toEqual(0);
     });
-    test('newGame should clear the computerSequence array',() =>{
-        expect(game.currentGame.length).toEqual(0);
+    test('should be one element in the computer choices array',() =>{
+        expect(game.currentGame.length).toBe(1);
     });
     test('newGame should display score = 0 ', () =>{
         expect(document.getElementById('score').innerText).toEqual(0);
+    });
+});
+
+describe('game play works correctly', ()=>{
+    beforeEach(() =>{
+        game.score = 0;
+        game.currentGame = [];
+        game.playerMoves = [];
+        addTurn();
+    });
+    afterEach(() =>{
+        game.score = 0; 
+        game.currentGame = [];
+        game.playerMoves = [];
+    });
+    test('addTurn adds a new turn to the game', () =>{
+        addTurn();
+        expect(game.currentGame.length).toBe(2);
+    });
+    test('should add correct class to light up the buttons',() => {
+        let button = document.getElementById(game.currentGame[0]);
+        expect(button.classList).toContain('light');
     });
 });
