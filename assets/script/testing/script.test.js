@@ -2,8 +2,7 @@
  * @jest-environment jsdom
  */
 
-
-const {game, newGame, showScore, addTurn, lightsOn} = require('../script')
+const {game, newGame, showScore, addTurn, lightsOn, showTurns} = require('../script')
 
 beforeAll(() => {
     let fs = require("fs");
@@ -48,6 +47,11 @@ describe('newGame function works correctly', () =>{
     });
     test('newGame should display score = 0 ', () =>{
         expect(document.getElementById('score').innerText).toEqual(0);
+    });
+    test('showTurns should update game.turnNumber', () =>{
+        game.turnNumber = 42;
+        showTurns();
+        expect(game.turnNumber).toBe(0);
     });
 });
 
